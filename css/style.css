@@ -1,0 +1,383 @@
+/* ---------------------------------------------------------------
+   Ultraviolette Automotive — Homepage
+   The hero image (Homepage.png) is treated as a final, approved
+   asset and is displayed pixel-for-pixel. No filters, overlays,
+   opacity changes, cropping, stretching or transformations are
+   applied to it. The layout adapts around the image.
+---------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #000; /* premium dark backdrop */
+  color: #fff;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hero section spans the full viewport. It centres the image and at
+   least fills the initial viewport height, with a dark background
+   filling any space around the image. */
+.hero {
+  position: relative; /* positioning context for the arrow button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh; /* better handling of mobile browser chrome */
+  background-color: #000;
+}
+
+/* Circular arrow button on the centre-right of the hero. It sits over
+   the dark background area (not over the bikes) and does not alter the
+   image. */
+.hero-arrow {
+  position: absolute;
+  top: 50%;
+  right: clamp(1rem, 4vw, 3rem);
+  transform: translateY(-50%);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(52px, 6vw, 68px);
+  height: clamp(52px, 6vw, 68px);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background-color: transparent;
+  color: #ffffff;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, transform 0.3s ease;
+}
+
+.hero-arrow svg {
+  width: 44%;
+  height: 44%;
+}
+
+.hero-arrow:hover,
+.hero-arrow:focus-visible {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #000000;
+  transform: translateY(-50%) scale(1.08);
+  outline: none;
+}
+
+/* Back/left variant — used on the second homepage to return. */
+.hero-arrow--left {
+  right: auto;
+  left: clamp(1rem, 4vw, 3rem);
+}
+
+/* The image is full-bleed: it spans the entire viewport width while
+   keeping its native 4269 x 2400 aspect ratio. Height follows the
+   ratio automatically, so the image is never stretched, distorted,
+   zoomed or cropped. On wide/short windows it may extend slightly
+   past the fold; on tall/narrow windows the dark background fills
+   the remaining space. */
+.hero__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4269 / 2400;
+  object-fit: contain;
+}
+
+/* ---------------------------------------------------------------
+   Clickable motorcycle hotspots (homepage)
+   Transparent anchors overlaid on the hero image. They add click
+   functionality only and do not change the image's appearance.
+---------------------------------------------------------------- */
+
+/* Wrapper matches the image box so the % hotspots map onto it. */
+.hero__media {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+}
+
+.hero__hotspot {
+  position: absolute;
+  display: block;
+  cursor: pointer;
+  background: transparent; /* invisible — image stays untouched */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Keyboard accessibility only; no visual change for mouse users. */
+.hero__hotspot:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: -2px;
+}
+
+/* Regions are expressed as % of the image so they stay aligned at
+   every screen size. Tuned to each bike + its label. */
+.hero__hotspot--mach2 {
+  left: 11%;
+  top: 40%;
+  width: 24%;
+  height: 52%;
+}
+
+.hero__hotspot--superstreet {
+  left: 35%;
+  top: 38%;
+  width: 25%;
+  height: 54%;
+}
+
+.hero__hotspot--venom {
+  left: 60%;
+  top: 38%;
+  width: 26%;
+  height: 54%;
+}
+
+/* Second homepage bikes. */
+.hero__hotspot--tesseract {
+  left: 15%;
+  top: 25%;
+  width: 34%;
+  height: 60%;
+}
+
+.hero__hotspot--shockwave {
+  left: 49%;
+  top: 25%;
+  width: 35%;
+  height: 60%;
+}
+
+/* ---------------------------------------------------------------
+   Variant selector pages (one per bike)
+   White background with black option cards in a modern automotive
+   configurator style: numbered cards, invert-on-hover fill, and a
+   subtle staggered entrance. Each card is ready to be wired to a
+   future variant detail page.
+---------------------------------------------------------------- */
+
+.variant-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+  background-color: #ffffff;
+  color: #000000;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.variant-header {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 2rem;
+}
+
+/* Clickable brand logo (top-left) — the exact Logo.png emblem,
+   links back to the homepage. */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.brand:hover,
+.brand:focus-visible {
+  opacity: 0.7;
+  outline: none;
+}
+
+.brand__mark {
+  display: block;
+  width: auto;
+  height: 68px; /* emblem size in the header */
+}
+
+.variant-main {
+  flex: 1 1 auto;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem 4rem;
+}
+
+.variant-intro {
+  margin: 1.5rem 0 3rem;
+}
+
+.variant-eyebrow {
+  margin: 0 0 0.9rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+}
+
+.variant-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.variant-subtitle {
+  margin: 1.1rem 0 0;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  color: #666666;
+}
+
+.variant-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+/* The grid cell (not the card) carries the staggered entrance and is
+   stretched by the grid to equal height, so every card is the same
+   size regardless of how many lines its name takes. Keeping the
+   entrance off the card leaves the card's own transform free for the
+   hover lift. */
+.variant-grid > li {
+  display: flex;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: variant-in 0.6s ease forwards;
+}
+
+.variant-grid > li:nth-child(1) { animation-delay: 0.05s; }
+.variant-grid > li:nth-child(2) { animation-delay: 0.12s; }
+.variant-grid > li:nth-child(3) { animation-delay: 0.19s; }
+.variant-grid > li:nth-child(4) { animation-delay: 0.26s; }
+.variant-grid > li:nth-child(5) { animation-delay: 0.33s; }
+
+/* Classy chamfered "cut-corner" card. Two opposite corners are
+   bevelled for a distinctive, angular, automotive-spec feel. A soft
+   drop-shadow follows the clipped silhouette (a plain border can't
+   trace the diagonals), lifting the white card off the white page. */
+.variant-card {
+  --chamfer: 22px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 100%;
+  height: 100%;
+  min-height: 210px;
+  padding: 1.6rem;
+  color: #000000;
+  text-decoration: none;
+  background-color: #ffffff;
+  overflow: hidden;
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--chamfer)) 0,
+    100% var(--chamfer),
+    100% 100%,
+    var(--chamfer) 100%,
+    0 calc(100% - var(--chamfer))
+  );
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.14));
+  transition: color 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Black panel that slides up to fill the card on hover/focus. */
+.variant-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #000000;
+  transform: translateY(100%);
+  transition: transform 0.35s ease;
+  z-index: 0;
+}
+
+.variant-card:hover,
+.variant-card:focus-visible {
+  color: #ffffff;
+  transform: translateY(-6px);
+  filter: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.28));
+  outline: none;
+}
+
+.variant-card:hover::before,
+.variant-card:focus-visible::before {
+  transform: translateY(0);
+}
+
+.variant-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.variant-card__index {
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  opacity: 0.5;
+}
+
+.variant-card__name {
+  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.variant-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.variant-card__cta svg {
+  width: 20px;
+  height: 10px;
+  transition: transform 0.3s ease;
+}
+
+.variant-card:hover .variant-card__cta svg,
+.variant-card:focus-visible .variant-card__cta svg {
+  transform: translateX(6px);
+}
+
+@keyframes variant-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .variant-grid > li {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .variant-card,
+  .variant-card::before {
+    transition: none;
+  }
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ultraviolette Automotive</title>
+  <meta
+    name="description"
+    content="Ultraviolette Automotive — F77 Mach 2, F77 SuperStreet and X47 Venom."
+  />
+  <link rel="preload" as="image" href="Homepage%201.png" />
+  <link rel="stylesheet" href="css/style.css?v=9" />
+</head>
+<body>
+  <!-- Hero: the uploaded image is used exactly as provided, unmodified.
+       Transparent link "hotspots" are overlaid on top of the image to
+       make each motorcycle clickable. They do not alter the image. -->
+  <section class="hero" aria-label="Ultraviolette Automotive hero">
+    <div class="hero__media">
+      <img
+        class="hero__image"
+        src="Homepage%201.png"
+        width="4269"
+        height="2400"
+        alt="Ultraviolette Automotive — F77 Mach 2, F77 SuperStreet and X47 Venom"
+        fetchpriority="high"
+        decoding="async"
+      />
+
+      <!-- Clickable regions over each motorcycle (percentage-based so
+           they scale with the responsive image). -->
+      <a
+        class="hero__hotspot hero__hotspot--mach2"
+        href="bikes/f77-mach-2/"
+        aria-label="F77 Mach 2 — view details"
+      ></a>
+      <a
+        class="hero__hotspot hero__hotspot--superstreet"
+        href="bikes/f77-superstreet/"
+        aria-label="F77 SuperStreet — view details"
+      ></a>
+      <a
+        class="hero__hotspot hero__hotspot--venom"
+        href="bikes/x47-venom/"
+        aria-label="X47 Venom — view details"
+      ></a>
+    </div>
+
+    <!-- Circular arrow button, centre-right of the hero.
+         Navigates to the second homepage. -->
+    <a class="hero-arrow" href="home-2/" aria-label="View the next lineup">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M5 12h13M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </a>
+  </section>
+</body>
+</html>
