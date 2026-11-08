@@ -16,6 +16,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden; /* guard against accidental horizontal scroll on mobile */
 }
 
 body {
@@ -379,5 +380,63 @@ body {
   .variant-card,
   .variant-card::before {
     transition: none;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Mobile / small-screen refinements
+   The hero image keeps its full, uncropped, proportional display on
+   every screen (per spec); these rules tune spacing, sizing and tap
+   targets so the pages feel designed for phones, not just shrunk.
+---------------------------------------------------------------- */
+@media (max-width: 640px) {
+  /* Variant & category pages */
+  .variant-header {
+    padding: 1.1rem 1.25rem;
+  }
+
+  .brand__mark {
+    height: 54px;
+  }
+
+  .variant-main {
+    padding: 0.5rem 1.25rem 3rem;
+  }
+
+  .variant-intro {
+    margin: 1rem 0 2rem;
+  }
+
+  /* One comfortable column on phones. */
+  .variant-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .variant-card {
+    --chamfer: 18px;
+    min-height: 140px;
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  /* Keep the hero arrow a comfortable tap size and near the edge. */
+  .hero-arrow {
+    width: 54px;
+    height: 54px;
+    right: 1rem;
+  }
+
+  .hero-arrow--left {
+    left: 1rem;
+    right: auto;
+  }
+}
+
+/* Mid-size phones / small tablets: 2 columns reads better than a lone
+   stretched card. */
+@media (min-width: 641px) and (max-width: 860px) {
+  .variant-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
