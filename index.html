@@ -6,53 +6,71 @@
   <title>Ultraviolette Automotive</title>
   <meta
     name="description"
-    content="Ultraviolette Automotive — F77 Mach 2, F77 SuperStreet and X47 Venom."
+    content="Ultraviolette Automotive — F77 Mach 2, F77 SuperStreet, X47 Venom, Tesseract and Shockwave."
   />
   <link rel="preload" as="image" href="Homepage%201.png" />
-  <link rel="stylesheet" href="css/style.css?v=12" />
+  <link rel="stylesheet" href="css/style.css?v=13" />
 </head>
 <body>
-  <!-- Hero: the uploaded image is used exactly as provided, unmodified.
-       Transparent link "hotspots" are overlaid on top of the image to
-       make each motorcycle clickable. They do not alter the image. -->
-  <section class="hero" aria-label="Ultraviolette Automotive hero">
-    <div class="hero__media">
-      <img
-        class="hero__image"
-        src="Homepage%201.png"
-        width="4269"
-        height="2400"
-        alt="Ultraviolette Automotive — F77 Mach 2, F77 SuperStreet and X47 Venom"
-        fetchpriority="high"
-        decoding="async"
-      />
+  <!-- Homepage slider: swipe / drag / arrows / keyboard to move between
+       the two lineups. Each slide is a full hero with the uploaded image
+       used exactly as provided (unmodified) plus clickable bike hotspots. -->
+  <div class="slider" id="homeSlider">
+    <div class="slider__track">
 
-      <!-- Clickable regions over each motorcycle (percentage-based so
-           they scale with the responsive image). -->
-      <a
-        class="hero__hotspot hero__hotspot--mach2"
-        href="bikes/f77-mach-2/"
-        aria-label="F77 Mach 2 — view details"
-      ></a>
-      <a
-        class="hero__hotspot hero__hotspot--superstreet"
-        href="bikes/f77-superstreet/"
-        aria-label="F77 SuperStreet — view details"
-      ></a>
-      <a
-        class="hero__hotspot hero__hotspot--venom"
-        href="bikes/x47-venom/"
-        aria-label="X47 Venom — view details"
-      ></a>
+      <!-- Slide 1 -->
+      <section class="hero slide" aria-label="Ultraviolette Automotive — first lineup">
+        <div class="hero__media">
+          <img
+            class="hero__image"
+            src="Homepage%201.png"
+            width="4269"
+            height="2400"
+            alt="Ultraviolette Automotive — F77 Mach 2, F77 SuperStreet and X47 Venom"
+            fetchpriority="high"
+            decoding="async"
+            draggable="false"
+          />
+          <a class="hero__hotspot hero__hotspot--mach2" href="bikes/f77-mach-2/" aria-label="F77 Mach 2 — view details"></a>
+          <a class="hero__hotspot hero__hotspot--superstreet" href="bikes/f77-superstreet/" aria-label="F77 SuperStreet — view details"></a>
+          <a class="hero__hotspot hero__hotspot--venom" href="bikes/x47-venom/" aria-label="X47 Venom — view details"></a>
+        </div>
+
+        <!-- Right arrow → next slide (falls back to the /home-2/ page without JS). -->
+        <a class="hero-arrow" href="home-2/" data-slide-next aria-label="View the next lineup">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 12h13M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </section>
+
+      <!-- Slide 2 -->
+      <section class="hero slide" aria-label="Ultraviolette Automotive — second lineup">
+        <div class="hero__media">
+          <img
+            class="hero__image"
+            src="Homepage%202.png"
+            width="4269"
+            height="2400"
+            alt="Ultraviolette Automotive — Tesseract and Shockwave"
+            decoding="async"
+            draggable="false"
+          />
+          <a class="hero__hotspot hero__hotspot--tesseract" href="bikes/tesseract/" aria-label="Tesseract — view variants"></a>
+          <a class="hero__hotspot hero__hotspot--shockwave" href="bikes/shockwave/" aria-label="Shockwave — view variants"></a>
+        </div>
+
+        <!-- Left arrow → previous slide (falls back to the first homepage without JS). -->
+        <a class="hero-arrow hero-arrow--left" href="./" data-slide-prev aria-label="Back to the first lineup">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M19 12H6M12 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </section>
+
     </div>
+  </div>
 
-    <!-- Circular arrow button, centre-right of the hero.
-         Navigates to the second homepage. -->
-    <a class="hero-arrow" href="home-2/" aria-label="View the next lineup">
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M5 12h13M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-    </a>
-  </section>
+  <script src="js/slider.js" defer></script>
 </body>
 </html>
